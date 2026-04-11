@@ -1,0 +1,27 @@
+package com.example.vegetable_shop.exception;
+
+import com.example.vegetable_shop.response.BaseResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@ControllerAdvice // Chỉ định lớp này xử lý ngoại lệ chung
+@Slf4j
+public class GlobalExceptionHandler<T> {
+
+    @ResponseBody
+    @ExceptionHandler(BindingResultException.class)
+    public BaseResponse<T> handleResourceNotFoundException(BindingResultException exception) {
+        log.error("Exception cause = {}", exception.getMessage());
+        return BaseResponse.<T>builder().code(2).msg(exception.getMessage()).build();
+    }
+
+    @ResponseBody
+    //@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    public BaseResponse<T> handleGeneralException(Exception exception) {
+        log.error("Exception cause = {}", exception.getMessage());
+        return BaseResponse.<T>builder().code(1).msg(exception.getMessage()).build();
+    }
+}
