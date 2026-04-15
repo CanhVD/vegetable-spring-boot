@@ -38,11 +38,17 @@ public class Product {
     @Column(name = "origin")
     private String origin;
 
+    @Column(name = "short_des")
+    private String shortDes;
+
     @Column(name = "description")
     private String description;
 
     @Column(name = "status")
     private Boolean status;
+
+    @Column(name = "image")
+    private String image;
 
     @Column(name = "created_by")
     private String createdBy;

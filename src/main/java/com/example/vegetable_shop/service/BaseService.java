@@ -4,15 +4,17 @@ import com.example.vegetable_shop.response.PageResponse;
 
 import java.util.List;
 
-public interface BaseService<T, D> {
+public interface BaseService<D, ID> {
 
-    PageResponse<List<T>> getPage(Integer page, Integer size);
+    PageResponse<List<D>> getPage(Integer page, Integer size);
 
-    List<T> findAll();
+    List<D> findAll();
 
-    T findById(D id);
+    D findById(ID id);
 
-    T save(T user);
+    D save(D dto);
 
-    void deleteById(D id);
+    D update(ID id, D dto);
+
+    void delete(ID id);
 }

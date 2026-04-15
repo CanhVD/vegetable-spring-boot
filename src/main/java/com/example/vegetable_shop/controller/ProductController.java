@@ -1,5 +1,6 @@
 package com.example.vegetable_shop.controller;
 
+import com.example.vegetable_shop.dto.ProductDTO;
 import com.example.vegetable_shop.model.Product;
 import com.example.vegetable_shop.response.BaseResponse;
 import com.example.vegetable_shop.response.PageResponse;
@@ -21,7 +22,7 @@ public class ProductController extends BaseRestController {
     private final ProductService productService;
 
     @GetMapping("search")
-    public ResponseEntity<BaseResponse<PageResponse<List<Product>>>> getUserBySearch(
+    public ResponseEntity<BaseResponse<PageResponse<List<ProductDTO>>>> getUserBySearch(
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "10") Integer size
     ) {
