@@ -5,6 +5,6 @@ import com.example.vegetable_shop.model.Product;
 
 import java.util.List;
 
-public interface ProductService extends BaseService <ProductDTO, Long> {
+public interface ProductService extends BaseService<Product, ProductDTO, Long> {
     List<Product> getProductByStatus(Boolean status);
 }

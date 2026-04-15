@@ -9,7 +9,7 @@ import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
-public class BaseServiceImpl<T, D, ID> implements BaseService<D, ID> {
+public class BaseServiceImpl<T, D, ID> implements BaseService<T, D, ID> {
 
     private final ModelMapper modelMapper;
 
@@ -60,8 +60,7 @@ public class BaseServiceImpl<T, D, ID> implements BaseService<D, ID> {
     }
 
     @Override
-    public D save(D dto) {
-        T entity = modelMapper.map(dto, entityClass);
+    public D save(T entity) {
         T saved = baseRepository.save(entity);
         return modelMapper.map(saved, dtoClass);
     }

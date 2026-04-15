@@ -4,7 +4,7 @@ import com.example.vegetable_shop.response.PageResponse;
 
 import java.util.List;
 
-public interface BaseService<D, ID> {
+public interface BaseService<T, D, ID> {
 
     PageResponse<List<D>> getPage(Integer page, Integer size);
 
@@ -12,7 +12,7 @@ public interface BaseService<D, ID> {
 
     D findById(ID id);
 
-    D save(D dto);
+    D save(T entity);
 
     D update(ID id, D dto);
 
