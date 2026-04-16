@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ProductService extends BaseService<Product, ProductDTO, Long> {
     List<Product> getProductByStatus(Boolean status);
+
+    ProductDTO findByIdWithCategory(Long id);
 }

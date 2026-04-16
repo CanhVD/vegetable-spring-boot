@@ -1,5 +1,6 @@
 package com.example.vegetable_shop.service.impl;
 
+import com.example.vegetable_shop.exception.BindingResultException;
 import com.example.vegetable_shop.repository.BaseRepository;
 import com.example.vegetable_shop.response.PageResponse;
 import com.example.vegetable_shop.service.BaseService;
@@ -54,7 +55,7 @@ public class BaseServiceImpl<T, D, ID> implements BaseService<T, D, ID> {
     @Override
     public D findById(ID id) {
         T entity = baseRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Entity Not found"));
+                .orElseThrow(() -> new BindingResultException("Entity Not found"));
 
         return modelMapper.map(entity, dtoClass);
     }
@@ -68,7 +69,7 @@ public class BaseServiceImpl<T, D, ID> implements BaseService<T, D, ID> {
     @Override
     public D update(ID id, D dto) {
         T existing = baseRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Entity Not found"));
+                .orElseThrow(() -> new BindingResultException("Entity Not found"));
 
         modelMapper.map(dto, existing);
         T updated = baseRepository.save(existing);
