@@ -5,25 +5,33 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "catagory")
-public class Catagory {
+@Table(name = "order_detail")
+public class OrderDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "product_id")
+    private Long productId;
+
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @Column(name = "percent")
+    private Integer percent;
+
+    @Column(name = "max_percent_amout")
+    private Long maxPercentAmout;
 
     @Column(name = "created_by")
     private String createdBy;
@@ -32,11 +40,8 @@ public class Catagory {
     private Instant createdDate;
 
     @Column(name = "updated_by")
-    private Instant updatedBy;
+    private String updatedBy;
 
     @Column(name = "updated_date")
     private Instant updatedDate;
-
-    @OneToMany(mappedBy = "category")
-    private Set<ProductCategory> productCategories = new LinkedHashSet<>();
 }

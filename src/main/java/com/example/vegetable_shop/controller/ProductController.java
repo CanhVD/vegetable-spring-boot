@@ -26,6 +26,11 @@ public class ProductController extends BaseRestController {
         return execute(() -> productService.getPage(page, size));
     }
 
+    @GetMapping("list")
+    public ResponseEntity<BaseResponse<List<ProductDTO>>> getAllProduct() {
+        return execute(productService::findAll);
+    }
+
     @GetMapping("{id}")
     public ResponseEntity<BaseResponse<ProductDTO>> getById(@PathVariable Long id) {
         return execute(() -> productService.findByIdWithCategory(id));
