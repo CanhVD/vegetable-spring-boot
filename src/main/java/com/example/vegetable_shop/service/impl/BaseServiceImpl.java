@@ -1,12 +1,16 @@
 package com.example.vegetable_shop.service.impl;
 
 import com.example.vegetable_shop.exception.BindingResultException;
+import com.example.vegetable_shop.repository.BasePageRepository;
 import com.example.vegetable_shop.repository.BaseRepository;
+import com.example.vegetable_shop.request.PageCustomRequest;
 import com.example.vegetable_shop.response.PageResponse;
 import com.example.vegetable_shop.service.BaseService;
+import com.example.vegetable_shop.util.enums.OrderBy;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -14,7 +18,9 @@ public class BaseServiceImpl<T, D, ID> implements BaseService<T, D, ID> {
 
     private final ModelMapper modelMapper;
 
-    private final BaseRepository<T, ID> baseRepository;
+    private BaseRepository<T, ID> baseRepository;
+
+    private BasePageRepository<T, ID> basePageRepository;
 
     private final Class<T> entityClass;
 
@@ -30,9 +36,42 @@ public class BaseServiceImpl<T, D, ID> implements BaseService<T, D, ID> {
         this.dtoClass = dtoClass;
     }
 
+    public BaseServiceImpl(
+            BasePageRepository<T, ID> basePageRepository,
+            ModelMapper modelMapper,
+            Class<T> entityClass,
+            Class<D> dtoClass) {
+        this.basePageRepository = basePageRepository;
+        this.modelMapper = modelMapper;
+        this.entityClass = entityClass;
+        this.dtoClass = dtoClass;
+    }
+
     @Override
-    public PageResponse<List<D>> getPage(Integer page, Integer size) {
-        Page<T> entityPage = baseRepository.findAll(PageRequest.of(page - 1, size));
+    public PageResponse<List<D>> getPage(PageCustomRequest request) {
+        Page<T> entityPage = baseRepository.findAll(PageRequest.of(request.getPage() - 1, request.getSize()));
+
+        List<D> dtoList = entityPage.getContent()
+                .stream()
+                .map(item -> modelMapper.map(item, dtoClass))
+                .toList();
+
+        return PageResponse.<List<D>>builder()
+                .result(dtoList)
+                .total(entityPage.getTotalElements())
+                .build();
+    }
+
+    @Override
+    public PageResponse<List<D>> getPageByKeyword(PageCustomRequest request) {
+        Page<T> entityPage = basePageRepository.findByNameContaining(
+                request.getKeyword(),
+                PageRequest.of(
+                        request.getPage() - 1, request.getSize(),
+                        request.getOrderBy() == OrderBy.ASC ?
+                                Sort.by(request.getProperty()).ascending() : Sort.by(request.getProperty()).descending()
+                )
+        );
 
         List<D> dtoList = entityPage.getContent()
                 .stream()

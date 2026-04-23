@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends BaseRepository<Product, Long> {
+public interface ProductRepository extends BasePageRepository<Product, Long> {
     List<Product> findByStatus(Boolean status);
 
     @EntityGraph(attributePaths = {

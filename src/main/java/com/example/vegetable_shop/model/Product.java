@@ -64,4 +64,10 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private Set<ProductCategory> productCategories = new LinkedHashSet<>();
+
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @OneToMany(mappedBy = "product")
+    private Set<Comment> comments = new LinkedHashSet<>();
 }

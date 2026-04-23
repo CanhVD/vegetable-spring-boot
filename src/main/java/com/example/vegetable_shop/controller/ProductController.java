@@ -1,7 +1,7 @@
 package com.example.vegetable_shop.controller;
 
 import com.example.vegetable_shop.dto.ProductDTO;
-import com.example.vegetable_shop.model.Product;
+import com.example.vegetable_shop.request.PageCustomRequest;
 import com.example.vegetable_shop.response.BaseResponse;
 import com.example.vegetable_shop.response.PageResponse;
 import com.example.vegetable_shop.service.ProductService;
@@ -18,12 +18,11 @@ public class ProductController extends BaseRestController {
 
     private final ProductService productService;
 
-    @GetMapping("search")
+    @PostMapping("search")
     public ResponseEntity<BaseResponse<PageResponse<List<ProductDTO>>>> getUserBySearch(
-            @RequestParam(defaultValue = "1") Integer page,
-            @RequestParam(defaultValue = "10") Integer size
+            @RequestBody PageCustomRequest request
     ) {
-        return execute(() -> productService.getPage(page, size));
+        return execute(() -> productService.getPageByKeyword(request));
     }
 
     @GetMapping("list")
