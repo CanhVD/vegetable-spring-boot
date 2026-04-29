@@ -18,9 +18,9 @@ public class ProductController extends BaseRestController {
 
     private final ProductService productService;
 
-    @PostMapping("search")
+    @GetMapping("search")
     public ResponseEntity<BaseResponse<PageResponse<List<ProductDTO>>>> getUserBySearch(
-            @RequestBody PageCustomRequest request
+            @ModelAttribute PageCustomRequest request
     ) {
         return execute(() -> productService.getPageByKeyword(request));
     }
