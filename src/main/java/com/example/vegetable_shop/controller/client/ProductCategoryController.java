@@ -1,5 +1,6 @@
-package com.example.vegetable_shop.controller;
+package com.example.vegetable_shop.controller.client;
 
+import com.example.vegetable_shop.controller.BaseRestController;
 import com.example.vegetable_shop.dto.ProductCategoryDTO;
 import com.example.vegetable_shop.request.PageProductCategoryRequest;
 import com.example.vegetable_shop.response.BaseResponse;

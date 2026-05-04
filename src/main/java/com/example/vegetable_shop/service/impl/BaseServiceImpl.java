@@ -41,6 +41,7 @@ public class BaseServiceImpl<T, D, ID> implements BaseService<T, D, ID> {
             ModelMapper modelMapper,
             Class<T> entityClass,
             Class<D> dtoClass) {
+        this.baseRepository = basePageRepository;
         this.basePageRepository = basePageRepository;
         this.modelMapper = modelMapper;
         this.entityClass = entityClass;

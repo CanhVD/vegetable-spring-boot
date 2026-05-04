@@ -7,8 +7,8 @@ import com.example.vegetable_shop.model.Product;
 import com.example.vegetable_shop.model.ProductCategory;
 import com.example.vegetable_shop.repository.ProductCategoryRepository;
 import com.example.vegetable_shop.repository.ProductRepository;
+import com.example.vegetable_shop.request.AddProductRequest;
 import com.example.vegetable_shop.service.ProductService;
-import jdk.jfr.Category;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +45,11 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, ProductDTO, Lon
         ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
         productDTO.setCategoryList(productCategories.stream().map(item -> modelMapper.map(item.getCategory(), CategoryDTO.class)).toList());
         return productDTO;
+    }
+
+    @Override
+    public ProductDTO addProduct(AddProductRequest request) {
+        Product product = modelMapper.map(request, Product.class);
+        return save(product);
     }
 }

@@ -7,6 +7,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 
 @NoRepositoryBean
-public interface BasePageRepository<T, ID> extends JpaRepository<T, ID> {
+public interface BasePageRepository<T, ID> extends BaseRepository<T, ID> {
     Page<T> findByNameContaining(String keyword, Pageable pageable);
 }

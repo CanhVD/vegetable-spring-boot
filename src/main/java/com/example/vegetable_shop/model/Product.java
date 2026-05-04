@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -13,7 +12,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "product")
-public class Product {
+public class Product extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,18 +48,6 @@ public class Product {
 
     @Column(name = "image")
     private String image;
-
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "created_date")
-    private Instant createdDate;
-
-    @Column(name = "updated_by")
-    private String updatedBy;
-
-    @Column(name = "updated_date")
-    private Instant updatedDate;
 
     @OneToMany(mappedBy = "product")
     private Set<ProductCategory> productCategories = new LinkedHashSet<>();

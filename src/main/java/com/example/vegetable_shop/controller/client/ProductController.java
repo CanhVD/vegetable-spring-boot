@@ -1,5 +1,6 @@
-package com.example.vegetable_shop.controller;
+package com.example.vegetable_shop.controller.client;
 
+import com.example.vegetable_shop.controller.BaseRestController;
 import com.example.vegetable_shop.dto.ProductDTO;
 import com.example.vegetable_shop.request.PageCustomRequest;
 import com.example.vegetable_shop.response.BaseResponse;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/product")
+@RequestMapping("client/api/v1/product")
 @RequiredArgsConstructor
 public class ProductController extends BaseRestController {
 

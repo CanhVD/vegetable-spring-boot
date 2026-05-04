@@ -1,12 +1,11 @@
-package com.example.vegetable_shop.controller;
+package com.example.vegetable_shop.controller.client;
 
+import com.example.vegetable_shop.controller.BaseRestController;
 import com.example.vegetable_shop.dto.CategoryDTO;
-import com.example.vegetable_shop.dto.ProductDTO;
 import com.example.vegetable_shop.request.PageCustomRequest;
 import com.example.vegetable_shop.response.BaseResponse;
 import com.example.vegetable_shop.response.PageResponse;
 import com.example.vegetable_shop.service.CategoryService;
-import com.example.vegetable_shop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
