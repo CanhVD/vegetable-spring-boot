@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/category")
+@RequestMapping("api/v1/client/category")
 @RequiredArgsConstructor
 public class CategoryController extends BaseRestController {
 
