@@ -57,4 +57,7 @@ public class Product extends BaseEntity {
 
     @OneToMany(mappedBy = "product")
     private Set<Comment> comments = new LinkedHashSet<>();
+
+    @Column(name = "sale_quantity")
+    private Integer saleQuantity;
 }

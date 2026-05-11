@@ -1,11 +1,13 @@
 package com.example.vegetable_shop.controller;
 import com.example.vegetable_shop.exception.BindingResultException;
 import com.example.vegetable_shop.response.BaseResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.function.Supplier;
 
+@Slf4j
 public class BaseRestController {
 
     protected <T> ResponseEntity<BaseResponse<T>> execute(Supplier<T> supplier) {
@@ -35,6 +37,7 @@ public class BaseRestController {
             response = BaseResponse.<T>builder().code(2).msg(exception.getMessage()).build();
         }
 
+        log.error("Exception cause = {}", exception.getMessage());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

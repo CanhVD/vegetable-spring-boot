@@ -34,5 +34,7 @@ public class ProductDTO {
 
     private String image;
 
+    private Integer saleQuantity;
+
     private List<CategoryDTO> categoryList;
 }
