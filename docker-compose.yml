@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  app:
+    image: java-spring:v1
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/vegetable-shop
