@@ -10,12 +10,15 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/vegetable-shop?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: rootpass
+      SPRING_jPA_HIBERNATE_DDL-AUTO: update
     depends_on:
       - db
 
   db:
     image: mysql:8.0.44-debian
     restart: always
+    ports:
+      - "3306:3306"
     volumes:
       - ./.docker/data/db:/var/lib/mysql
     environment:
