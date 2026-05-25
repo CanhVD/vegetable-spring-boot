@@ -7,4 +7,17 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/vegetable-shop
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/vegetable-shop?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: rootpass
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0.44-debian
+    restart: always
+    volumes:
+      - ./.docker/data/db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: vegetable-shop
