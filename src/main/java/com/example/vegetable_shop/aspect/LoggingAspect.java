@@ -28,8 +28,8 @@ public class LoggingAspect {
         try {
             Object result = joinPoint.proceed();
             if (log.isInfoEnabled()) {
-                log.info("Output: {}.{}() with result = {}", joinPoint.getSignature().getDeclaringTypeName(),
-                        joinPoint.getSignature().getName(), result);
+                log.info("Output: {}.{}() with result success", joinPoint.getSignature().getDeclaringTypeName(),
+                        joinPoint.getSignature().getName());
             }
             return result;
         } catch (IllegalArgumentException e) {

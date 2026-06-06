@@ -8,6 +8,7 @@ import com.example.vegetable_shop.response.PageResponse;
 import com.example.vegetable_shop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class ProductController extends BaseRestController {
     private final ProductService productService;
 
     @GetMapping("search")
+    @PreAuthorize("hasAuthority('SCOPE_READ')")
     public ResponseEntity<BaseResponse<PageResponse<List<ProductDTO>>>> getUserBySearch(
             @ModelAttribute PageCustomRequest request
     ) {
