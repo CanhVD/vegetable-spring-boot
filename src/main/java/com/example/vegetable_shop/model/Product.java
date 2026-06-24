@@ -40,7 +40,7 @@ public class Product extends BaseEntity {
     @Column(name = "short_des")
     private String shortDes;
 
-    @Column(name = "description")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "status")
