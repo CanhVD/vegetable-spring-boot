@@ -1,10 +1,12 @@
 package com.example.vegetable_shop.repository;
 
 import com.example.vegetable_shop.model.Product;
+import org.jspecify.annotations.NullMarked;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends BasePageRepository<Product, Long> {
@@ -14,5 +16,6 @@ public interface ProductRepository extends BasePageRepository<Product, Long> {
             "productCategories",
             "productCategories.category"
     })
-    Product getById(Long id);
+    @NullMarked
+    Optional<Product> findById(Long id);
 }
