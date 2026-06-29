@@ -1,0 +1,12 @@
+logs
+target
+.git
+.idea
+.vscode
+node_modules
+*.log
+.dockerignore
+Dockerfile
+docker-compose.yml
+db.sql
+HELP.md
