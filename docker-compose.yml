@@ -1,6 +1,6 @@
 services:
   app:
-    image: java-spring:v1
+    image: java-spring:v2
     restart: always
     ports:
       - "8080:8080"
